@@ -1,8 +1,8 @@
 const key = '61b15b0c0f1865015720e4bc6c0b7d55'
 const urlWeatherCurrent = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&appid=${key}`
 const urlWeatherByDays = `https://api.openweathermap.org/data/2.5/forecast?q=Minsk&appid=${key}`
-widgetHeaderElement = document.querySelector('.widget-header')
-widgetBodyElement = document.querySelector('.widget-body')
+const widgetHeaderElement = document.querySelector('.widget-header')
+const widgetBodyElement = document.querySelector('.widget-body')
 
 function fetchDataPromise (url, method = 'GET') {
 	return new Promise((resolve, reject) => {
@@ -63,29 +63,24 @@ function renderHeader(data) {
 
 function getDirection(value) {
 	console.log(value)
-	if(value > 337.5 || value < 22.5) {
-		return 'Север'
-	}
-	if(value > 22.5 && value < 67.5) {
-		return 'Северо-восток'
-	}
-	if(value > 67.5 && value < 112.5) {
-		return 'Восток'
-	}
-	if(value > 112.5 && value < 157.5) {
-		return 'Юго-восток'
-	}
-	if(value > 157.5 && value < 202.5) {
-		return 'Юг'
-	}
-	if(value > 202.5 && value < 247.5) {
-		return 'Юго-запад'
-	}
-	if(value > 247.5 && value < 292.5) {
-		return 'Запад'
-	}
-	if(value > 292.5 && value < 337.5) {
-		return 'Северо-запад'
+	
+	switch(true) {
+		case (value > 337.5 || value < 22.5):
+			return 'Север'
+		case (value > 22.5 && value < 67.5):
+			return 'Северо-восток'
+		case (value > 67.5 && value < 112.5):
+			return 'Восток'
+		case (value > 112.5 && value < 157.5):
+			return 'Юго-восток'
+		case (value > 157.5 && value < 202.5):
+			return 'Юг'
+		case (value > 202.5 && value < 247.5):
+			return 'Юго-запад'
+		case (value > 247.5 && value < 292.5):
+			return 'Запад'
+		case (value > 292.5 && value < 337.5):
+			return 'Северо-запад'									
 	}
 }
 
@@ -121,41 +116,31 @@ return `
 }
 
 function transformMonth(index) {
-	if(index = 0) {
-		return 'Января'
-	}
-	if(index = 1) {
-		return 'Февраля'
-	}
-	if(index = 2) {
-		return 'Марта'
-	}
-	if(index = 3) {
-		return 'Апреля'
-	}
-	if(index = 4) {
-		return 'Мая'
-	}
-	if(index = 5) {
-		return 'Июня'
-	}
-	if(index = 6) {
-		return 'Июля'
-	}
-	if(index = 7) {
-		return 'Августа'
-	}
-	if(index = 8) {
-		return 'Сентября'
-	}
-	if(index = 9) {
-		return 'Октября'
-	}
-	if(index = 10) {
-		return 'Ноября'
-	}
-	if(index = 11) {
-		return 'Декабря'
+	switch(index) {
+		case (index = 0):
+			return 'Января'	
+		case (index = 1):
+			return 'Февраля'
+		case (index = 2):
+			return 'Марта'
+		case (index = 3):
+			return 'Апреля'
+		case (index = 4):
+			return 'Мая'
+		case (index = 5):
+			return 'Июня'
+		case (index = 6):
+			return 'Июля'
+		case (index = 7):
+			return 'Августа'
+		case (index = 8):
+			return 'Сентября'
+		case (index = 9):
+			return 'Октября'
+		case (index = 10):
+			return 'Ноября'
+		case (index = 11):
+			return 'Декабря'										
 	}
 }
 
@@ -181,3 +166,4 @@ fetchDataPromise(urlWeatherByDays)
 const currentDate = new Date()
 const time = currentDate.getTime()
 console.log(time)
+
